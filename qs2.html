@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  var txt="#include <stdio.h>\n" +
+          "void swap(int *a, int *b)\n" +
+          "{\n" +
+          "    int t = *a;\n" +
+          "    *a = *b;\n" +
+          "    *b = t;\n" +
+          "}\n" +
+          "int partition(int array[], int low, int high)\n" +
+          "{\n" +
+          "    int pivot = array[high];\n" +
+          "    int i = (low - 1);\n" +
+          "    for (int j = low; j < high; j++)\n" +
+          "    {\n" +
+          "        if (array[j] <= pivot)\n" +
+          "        {\n" +
+          "            i++;\n" +
+          "            swap(&array[i], &array[j]);\n" +
+          "        }\n" +
+          "    }\n" +
+          "    swap(&array[i + 1], &array[high]);\n" +
+          "    return (i + 1);\n" +
+          "}\n" +
+          "\n" +
+          "void quickSort(int array[], int low, int high)\n" +
+          "{\n" +
+          "    if (low < high)\n" +
+          "    {\n" +
+          "        int pi = partition(array, low, high);\n" +
+          "        quickSort(array, low, pi - 1);\n" +
+          "        quickSort(array, pi + 1, high);\n" +
+          "    }\n" +
+          "}\n" +
+          "void printArray(int array[], int size)\n" +
+          "{\n" +
+          "    for (int i = 0; i < size; ++i)\n" +
+          "    {\n" +
+          "        printf(\"%d \", array[i]);\n" +
+          "    }\n" +
+          "    printf(\"\\n\");\n" +
+          "}\n" +
+          "int main()\n" +
+          "{\n" +
+          "    int q;\n" +
+          "    scanf(\"%d\",&q);\n" +
+          "    int i,data[q];\n" +
+          "    for(i=0;i<q;i++)\n" +
+          "        scanf(\"%d\",&data[i]);\n" +
+          "    int n = sizeof(data) / sizeof(data[0]);\n" +
+          "    quickSort(data, 0, n - 1);\n" +
+          "    printArray(data, n);\n" +
+          "}\n";
+  navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>

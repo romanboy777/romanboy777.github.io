@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  var txt="#include <stdio.h>\n" +
+          "int bsearch(int a[],int f,int l)\n" +
+          "{\n" +
+          "    int k,c;\n" +
+          "    scanf(\"%d\",&k);\n" +
+          "    while(f<=l)\n" +
+          "    {\n" +
+          "        int m=(f+l)/2;\n" +
+          "        if(k==a[m])\n" +
+          "        return k;\n" +
+          "        else if(k>a[m])\n" +
+          "        f=m+1;\n" +
+          "        else \n" +
+          "        l=m-1;\n" +
+          "\n" +
+          "\n" +
+          "    }\n" +
+          "    return -1;\n" +
+          "}\n" +
+          "\n" +
+          "int main()\n" +
+          "{\n" +
+          "    int n;\n" +
+          "    scanf(\"%d\",&n);\n" +
+          "    int a[n],i;\n" +
+          "    for(i=0;i<n;i++)\n" +
+          "    scanf(\"%d\",&a[i]);\n" +
+          "    int j,temp;\n" +
+          "    for(i=0;i<n;i++)\n" +
+          "    {\n" +
+          "        for(j=i;j<n;j++)\n" +
+          "        {\n" +
+          "            if(a[i]>a[j])\n" +
+          "            {\n" +
+          "                temp=a[i];\n" +
+          "                a[i]=a[j];\n" +
+          "                a[j]=temp;\n" +
+          "            }\n" +
+          "        }\n" +
+          "    }\n" +
+          "    int f,l,m;\n" +
+          "    f=0;\n" +
+          "    l=n-1;\n" +
+          "   int c= bsearch(a,f,l);\n" +
+          "   if(c==-1)\n" +
+          "   printf(\"-1\");\n" +
+          "   else\n" +
+          "    printf(\"1\");\n" +
+          "\n" +
+          "}\n";
+    navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>
