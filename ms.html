@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  var txt="\n" +
+          "#include <stdio.h>\n" +
+          "void merge(int arr[], int p, int q, int r) {\n" +
+          "    int n1 = q - p + 1;\n" +
+          "    int n2 = r - q;\n" +
+          "\n" +
+          "    int L[n1], M[n2];\n" +
+          "\n" +
+          "    for (int i = 0; i < n1; i++)\n" +
+          "        L[i] = arr[p + i];\n" +
+          "    for (int j = 0; j < n2; j++)\n" +
+          "        M[j] = arr[q + 1 + j];\n" +
+          "    int i, j, k;\n" +
+          "    i = 0;\n" +
+          "    j = 0;\n" +
+          "    k = p;\n" +
+          "    while (i < n1 && j < n2) {\n" +
+          "        if (L[i] <= M[j]) {\n" +
+          "            arr[k] = L[i];\n" +
+          "            i++;\n" +
+          "        } else {\n" +
+          "            arr[k] = M[j];\n" +
+          "            j++;\n" +
+          "        }\n" +
+          "        k++;\n" +
+          "    }\n" +
+          "    while (i < n1) {\n" +
+          "        arr[k] = L[i];\n" +
+          "        i++;\n" +
+          "        k++;\n" +
+          "    }\n" +
+          "\n" +
+          "    while (j < n2) {\n" +
+          "        arr[k] = M[j];\n" +
+          "        j++;\n" +
+          "        k++;\n" +
+          "    }\n" +
+          "}\n" +
+          "void mergeSort(int arr[], int l, int r) {\n" +
+          "    if (l < r) {\n" +
+          "        int m = l + (r - l) / 2;\n" +
+          "        mergeSort(arr, l, m);\n" +
+          "        mergeSort(arr, m + 1, r);\n" +
+          "        merge(arr, l, m, r);\n" +
+          "    }\n" +
+          "}\n" +
+          "void printArray(int arr[], int size) {\n" +
+          "    for (int i = 0; i < size; i++)\n" +
+          "        printf(\"%d \", arr[i]);\n" +
+          "    printf(\"\\n\");\n" +
+          "}\n" +
+          "int main() {\n" +
+          "    int n;\n" +
+          "    scanf(\"%d\",&n);\n" +
+          "    int arr[n];\n" +
+          "    int size=n;\n" +
+          "    for(int i=0;i<n;i++)\n" +
+          "        scanf(\"%d\",&arr[i]);\n" +
+          "    mergeSort(arr, 0, size - 1);\n" +
+          "    printf(\"Sorted array: \\n\");\n" +
+          "    printArray(arr, size);\n" +
+          "}";
+  navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>
