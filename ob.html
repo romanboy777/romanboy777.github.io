@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var txt="#include<stdio.h>\n" +
+        "struct mat\n" +
+        "{\n" +
+        "    int w,c,r;\n" +
+        "};\n" +
+        "int arr[100],n;\n" +
+        "int mind(int arr[],int size)\n" +
+        "{\n" +
+        "    int minindex=0;\n" +
+        "    for(int i=1;i<size;i++)\n" +
+        "    {\n" +
+        "        if(arr[i]<arr[minindex])\n" +
+        "        {\n" +
+        "            minindex=i;\n" +
+        "        }\n" +
+        "    }\n" +
+        "    return minindex;\n" +
+        "}\n" +
+        "int print(struct mat a[][n+1],int i,int j)\n" +
+        "{\n" +
+        "    printf(\"Left child of %d is :: %d\\n\",a[i][j].r,a[i][a[i][j].r-1].r);\n" +
+        "    printf(\"Right child of %d is :: %d\\n\",a[i][j].r,a[a[i][j].r][j].r);\n" +
+        "    if(a[i][a[i][j].r-1].r!=0)\n" +
+        "    {\n" +
+        "        print(a,i,a[i][j].r-1);\n" +
+        "    }\n" +
+        "    if(a[a[i][j].r][j].r!=0)\n" +
+        "    {\n" +
+        "        print(a,a[i][j].r,j);\n" +
+        "    }\n" +
+        "}\n" +
+        "int main()\n" +
+        "{\n" +
+        "    int i,j,k;\n" +
+        "    scanf(\"%d\",&n);\n" +
+        "    int b[n],c[n+1];\n" +
+        "    for(i=0;i<n;i++)\n" +
+        "    {\n" +
+        "        scanf(\"%d\",&b[i]);\n" +
+        "    }\n" +
+        "    for(i=0;i<=n;i++)\n" +
+        "    {\n" +
+        "        scanf(\"%d\",&c[i]);\n" +
+        "    }\n" +
+        "    int l=n;\n" +
+        "    struct mat a[n+1][n+1];\n" +
+        "    for(int d=0;d<=n;d++)\n" +
+        "    {\n" +
+        "        for(i=0;i<=n;i++)\n" +
+        "        {\n" +
+        "            j=i+d;\n" +
+        "            if(j<=n)\n" +
+        "            {\n" +
+        "                if(i==j)\n" +
+        "                {\n" +
+        "                    a[i][j].w=c[i];\n" +
+        "                    a[i][j].c=0;\n" +
+        "                    a[i][j].r=0;\n" +
+        "                }\n" +
+        "                else \n" +
+        "                {\n" +
+        "                    a[i][j].w=a[i][j-1].w+b[j-1]+c[j];\n" +
+        "                    int n1=(i-j),k=0;\n" +
+        "                    for(int n2=i+1;n2<=j;n2++)\n" +
+        "                    {\n" +
+        "                        arr[k++]=a[i][n2-1].c+a[n2][j].c;\n" +
+        "                    }\n" +
+        "                    printf(\"\\n\");\n" +
+        "                    a[i][j].c=arr[mind(arr,k)]+a[i][j].w;\n" +
+        "                    a[i][j].r=mind(arr,k)+i+1;\n" +
+        "                }\n" +
+        "            }\n" +
+        "        }\n" +
+        "    }\n" +
+        "    printf(\"Optimal BST is :: w values are:\\n\");\n" +
+        "    for(int diff=0;diff<=n;diff++)\n" +
+        "    {\n" +
+        "        for(i=0;i<=n;i++)\n" +
+        "        {\n" +
+        "            j=i+diff;\n" +
+        "            if(j<=n)\n" +
+        "            {\n" +
+        "                printf(\"%d \",a[i][j].w);\n" +
+        "            }\n" +
+        "        }\n" +
+        "        printf(\"\\n\");\n" +
+        "    }\n" +
+        "    printf(\"c values are:\\n\");\n" +
+        "    for(int diff=0;diff<=n;diff++)\n" +
+        "    {\n" +
+        "        for(i=0;i<=n;i++)\n" +
+        "        {\n" +
+        "            j=i+diff;\n" +
+        "            if(j<=n)\n" +
+        "            {\n" +
+        "                printf(\"%d \",a[i][j].c);\n" +
+        "            }\n" +
+        "        }\n" +
+        "        printf(\"\\n\");\n" +
+        "    }\n" +
+        "    printf(\"r values are:\\n\");\n" +
+        "    int x,y;\n" +
+        "    for(int diff=0;diff<=n;diff++)\n" +
+        "    {\n" +
+        "        for(i=0;i<=n;i++)\n" +
+        "        {\n" +
+        "            j=i+diff;\n" +
+        "            if(j<=n)\n" +
+        "            {\n" +
+        "                printf(\"%d \",a[i][j].r);\n" +
+        "                x=i,y=j;\n" +
+        "            }\n" +
+        "        }\n" +
+        "        printf(\"\\n\");\n" +
+        "    }\n" +
+        "    printf(\"Root is %d\\n\",a[x][y].r);\n" +
+        "    print(a,x,y);\n" +
+        "}\n";
+    navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>

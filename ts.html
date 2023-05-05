@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  var txt="#include <stdio.h>\n" +
+          "#include <stdlib.h>\n" +
+          "#include <string.h>\n" +
+          "#define INF 1000000\n" +
+          "#define MAXN 16\n" +
+          "int n;\n" +
+          "int dist[MAXN][MAXN];\n" +
+          "int dp[1 << MAXN][MAXN];\n" +
+          "int tsp(int S, int i) {\n" +
+          "    if (S == (1 << n) - 1 && i == 0)\n" +
+          "        return 0;\n" +
+          "    if (dp[S][i] != -1)\n" +
+          "        return dp[S][i];\n" +
+          "    int ans = INF;\n" +
+          "    for (int j = 0; j < n; j++) {\n" +
+          "        if (!(S & (1 << j))) {\n" +
+          "            ans = fmin(ans, dist[i][j] + tsp(S | (1 << j), j));\n" +
+          "        }\n" +
+          "    }\n" +
+          "    return dp[S][i] = ans;\n" +
+          "}\n" +
+          "void print_path(int S, int i) {\n" +
+          "    if (S == (1 << n) - 1 && i == 0) {\n" +
+          "        printf(\"A\\n\");\n" +
+          "        return;\n" +
+          "    }\n" +
+          "    printf(\"%c->\", i + 'A');\n" +
+          "    int ans = INF;\n" +
+          "    int nxt = -1;\n" +
+          "    for (int j = 0; j < n; j++) {\n" +
+          "        if (!(S & (1 << j))) {\n" +
+          "            int tmp = dist[i][j] + dp[S | (1 << j)][j];\n" +
+          "            if (tmp < ans) {\n" +
+          "                ans = tmp;\n" +
+          "                nxt = j;\n" +
+          "            }\n" +
+          "        }\n" +
+          "    }\n" +
+          "    print_path(S | (1 << nxt), nxt);\n" +
+          "}\n" +
+          "int main() {\n" +
+          "    printf(\"Enter the number of cities: \");\n" +
+          "    scanf(\"%d\", &n);\n" +
+          "    printf(\"Enter the distance matrix:\\n\");\n" +
+          "    for (int i = 0; i < n; i++) {\n" +
+          "        for (int j = 0; j < n; j++) {\n" +
+          "            scanf(\"%d\", &dist[i][j]);\n" +
+          "        }\n" +
+          "    }\n" +
+          "    memset(dp, -1, sizeof(dp));\n" +
+          "    int min_cost = tsp(0, 0);\n" +
+          "    printf(\"Shortest Path: \");\n" +
+          "    print_path(0, 0);\n" +
+          "    printf(\"Min Cost = %d\\n\", min_cost);\n" +
+          "    return 0;\n" +
+          "}\n" +
+          "\n";
+  navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  var txt="#include <stdio.h>\n" +
+          "#define INF 1000000000 // Infinity value for unreachable nodes\n" +
+          "int main() {\n" +
+          "    int n, i, j, k;\n" +
+          "    printf(\"Enter the number of nodes in the graph: \");\n" +
+          "    scanf(\"%d\", &n);\n" +
+          "    int dist[n][n]; // 2D array for storing the distances\n" +
+          "    // Reading input graph\n" +
+          "    printf(\"Enter the adjacency matrix of the graph:\\n\");\n" +
+          "    for (i = 0; i < n; i++) {\n" +
+          "        for (j = 0; j < n; j++) {\n" +
+          "            scanf(\"%d\", &dist[i][j]);\n" +
+          "            // Replace 0 with INF for unreachable nodes\n" +
+          "            if (dist[i][j] == 0 && i != j) {\n" +
+          "                dist[i][j] = INF;\n" +
+          "            }\n" +
+          "        }\n" +
+          "    }\n" +
+          "    // Applying Floyd-Warshall algorithm\n" +
+          "    for (k = 0; k < n; k++) {\n" +
+          "        for (i = 0; i < n; i++) {\n" +
+          "            for (j = 0; j < n; j++) {\n" +
+          "                if (dist[i][k] + dist[k][j] < dist[i][j]) {\n" +
+          "                    dist[i][j] = dist[i][k] + dist[k][j];\n" +
+          "                }\n" +
+          "            }\n" +
+          "        }\n" +
+          "    }\n" +
+          "    // Printing the result\n" +
+          "    printf(\"The all pairs shortest path matrix is:\\n\");\n" +
+          "    for (i = 0; i < n; i++) {\n" +
+          "        for (j = 0; j < n; j++) {\n" +
+          "            if (dist[i][j] == INF) {\n" +
+          "                printf(\"INF \");\n" +
+          "            } else {\n" +
+          "                printf(\"%d \", dist[i][j]);\n" +
+          "            }\n" +
+          "        }\n" +
+          "        printf(\"\\n\");\n" +
+          "    }\n" +
+          "    return 0;\n" +
+          "}\n" +
+          "\n";
+  navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  var txt="#include <stdio.h>\n" +
+          "#include <stdlib.h>\n" +
+          "#include <limits.h>\n" +
+          "\n" +
+          "#define MAX_N 100\n" +
+          "\n" +
+          "void matrixChainOrder(int p[], int n);\n" +
+          "void printSequence(int s[][MAX_N], int i, int j);\n" +
+          "void printMatrix(int matrix[][MAX_N], int n);\n" +
+          "\n" +
+          "int main() {\n" +
+          "    int n, i;\n" +
+          "    int p[MAX_N+1];\n" +
+          "\n" +
+          "    \n" +
+          "    scanf(\"%d\", &n);\n" +
+          "\n" +
+          "   \n" +
+          "    for (i = 0; i <= n; i++) {\n" +
+          "        scanf(\"%d\", &p[i]);\n" +
+          "    }\n" +
+          "\n" +
+          "    matrixChainOrder(p, n);\n" +
+          "\n" +
+          "    return 0;\n" +
+          "}\n" +
+          "\n" +
+          "void matrixChainOrder(int p[], int n) {\n" +
+          "    int m[MAX_N][MAX_N];\n" +
+          "    int s[MAX_N][MAX_N];\n" +
+          "\tint i, j, k, l, q;\n" +
+          "\n" +
+          "    for (i = 1; i <= n; i++) {\n" +
+          "        m[i][i] = 0;\n" +
+          "    }\n" +
+          "\n" +
+          "    for (l = 2; l <= n; l++) {\n" +
+          "        for (i = 1; i <= n - l + 1; i++) {\n" +
+          "            j = i + l - 1;\n" +
+          "            m[i][j] = INT_MAX;\n" +
+          "            for (k = i; k <= j - 1; k++) {\n" +
+          "                q = m[i][k] + m[k+1][j] + p[i-1]*p[k]*p[j];\n" +
+          "                if (q < m[i][j]) {\n" +
+          "                    m[i][j] = q;\n" +
+          "                    s[i][j] = k;\n" +
+          "                }\n" +
+          "            }\n" +
+          "        }\n" +
+          "    }\n" +
+          "\n" +
+          "    printf(\"\\ncost matrix:\\n\");\n" +
+          "    printMatrix(m, n);\n" +
+          "    printf(\"\\nsequence matrix:\\n\");\n" +
+          "    printMatrix(s, n);\n" +
+          "\n" +
+          "    printf(\"\\nOptimal ordering is: \");\n" +
+          "    printSequence(s, 1, n);\n" +
+          "    printf(\"\\ncost of matrix chain multiplication: %d\\n\", m[1][n]);\n" +
+          "}\n" +
+          "\n" +
+          "void printSequence(int s[][MAX_N], int i, int j) {\n" +
+          "    if (i == j) {\n" +
+          "        printf(\"a%d\", i);\n" +
+          "    } else {\n" +
+          "        printf(\"(\");\n" +
+          "        printSequence(s, i, s[i][j]);\n" +
+          "        printSequence(s, s[i][j]+1, j);\n" +
+          "        printf(\")\");\n" +
+          "    }\n" +
+          "}\n" +
+          "\n" +
+          "void printMatrix(int matrix[][MAX_N], int n) {\n" +
+          "    int i, j;\n" +
+          "\n" +
+          "    for (i = 1; i <= n; i++) {\n" +
+          "        for (j = 1; j <= n; j++) {\n" +
+          "            if (matrix[i][j] == INT_MAX) {\n" +
+          "                printf(\"INF \");\n" +
+          "            } else {\n" +
+          "                printf(\"%d \", matrix[i][j]);\n" +
+          "            }\n" +
+          "        }\n" +
+          "        printf(\"\\n\");\n" +
+          "    }\n" +
+          "}\n";
+  navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>

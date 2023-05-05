@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  var txt="#include \"stdio.h\"\n" +
+          "int main(){\n" +
+          "\tfloat knapsackSize;\n" +
+          "    int n;\n" +
+          "\tscanf(\"%d\",&n);\n" +
+          "    scanf(\"%f\",&knapsackSize);\n" +
+          "\tfloat profit[n],weight[n];\n" +
+          "\tfor(int i=0;i<n;i++)\n" +
+          "\t    scanf(\"%f %f\",&profit[i],&weight[i]);\n" +
+          "\tfloat p_unit[n];\n" +
+          "\tfor(int i=0;i<n;i++){\n" +
+          "\t\tp_unit[i]=profit[i]/weight[i];\n" +
+          "\t}\n" +
+          "\tfloat max_profit=0;\n" +
+          "\tint iter=0;\n" +
+          "\twhile(iter<n){\n" +
+          "\t\tfloat max=p_unit[0];\n" +
+          "\t\tint index=0;\n" +
+          "\t\tfor(int i=0;i<n;i++){\n" +
+          "\t\t\tif(p_unit[i]>max){\n" +
+          "\t\t\t    max=p_unit[i];\n" +
+          "\t\t\t    index=i;\n" +
+          "\t\t\t}\n" +
+          "\t\t}\n" +
+          "\t\tif(knapsackSize>=weight[index]){\n" +
+          "\t\t    max_profit+=profit[index];\n" +
+          "\t\t\tknapsackSize=knapsackSize-weight[index];\n" +
+          "\t\t}\n" +
+          "        else{\n" +
+          "            max_profit+=((knapsackSize/weight[index])*profit[index]);\n" +
+          "            break;\n" +
+          "        }\n" +
+          "\t\tp_unit[index]=-1;\n" +
+          "\t\titer++;\n" +
+          "\t}\n" +
+          "\tprintf(\" Maximum Profit : %.4f\\n\",max_profit);\n" +
+          "\treturn 0;\n" +
+          "}\n" +
+          "\n" +
+          "\n";
+  navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>
