@@ -1,0 +1,14 @@
+echo -n &quot;Enter Number :&quot;
+read N
+echo -n &quot;Enter Num1 :&quot;
+read a
+echo -n &quot;Enter Num2 :&quot;
+read b
+echo &quot;The Fibonacci series is : &quot;
+for (( i=0; i&lt;N; i++ ))
+do
+echo -n &quot;$a &quot;
+fn=$((a + b))
+a=$b
+b=$fn
+done

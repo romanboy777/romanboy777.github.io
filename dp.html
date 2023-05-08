@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var txt="#include<stdio.h>\n" +
+        "#define n 4\n" +
+        "int compltedPhilo = 0,i;\n" +
+        "struct fork{\n" +
+        "int taken;\n" +
+        "}ForkAvil[n];\n" +
+        "struct philosp{\n" +
+        "int left;\n" +
+        "int right;\n" +
+        "}Philostatus[n];\n" +
+        "void goForDinner(int philID){\n" +
+        "if(Philostatus[philID].left==10 && Philostatus[philID].right==10)\n" +
+        " printf(\"Philosopher %d completed his dinner\\n\",philID+1);\n" +
+        "else if(Philostatus[philID].left==1 && Philostatus[philID].right==1){\n" +
+        " printf(\"Philosopher %d completed his dinner\\n\",philID+1);\n" +
+        " Philostatus[philID].left = Philostatus[philID].right = 10;\n" +
+        " int otherFork = philID-1;\n" +
+        " if(otherFork== -1)\n" +
+        " otherFork=(n-1);\n" +
+        " ForkAvil[philID].taken = ForkAvil[otherFork].taken = 0;\n" +
+        " printf(\"Philosopher %d released fork %d and fork %d\\n\",philID+1,philID+1,otherFork+1);\n" +
+        " compltedPhilo++;\n" +
+        " }\n" +
+        " else if(Philostatus[philID].left==1 && Philostatus[philID].right==0){\n" +
+        " if(philID==(n-1)){\n" +
+        " if(ForkAvil[philID].taken==0){\n" +
+        " ForkAvil[philID].taken = Philostatus[philID].right = 1;\n" +
+        " printf(\"Fork %d taken by philosopher %d\\n\",philID+1,philID+1);\n" +
+        " }else{\n" +
+        " printf(\"Philosopher %d is waiting for fork %d\\n\",philID+1,philID+1);\n" +
+        " }\n" +
+        " }else{\n" +
+        " int dupphilID = philID;\n" +
+        " philID-=1;\n" +
+        " if(philID== -1)\n" +
+        " philID=(n-1);\n" +
+        " if(ForkAvil[philID].taken == 0){\n" +
+        " ForkAvil[philID].taken = Philostatus[dupphilID].right = 1;\n" +
+        " printf(\"Fork %d taken by Philosopher %d\\n\",philID+1,dupphilID+1);\n" +
+        " }else{\n" +
+        " printf(\"Philosopher %d is waiting for Fork %d\\n\",dupphilID+1,philID+1);\n" +
+        " }\n" +
+        " }\n" +
+        " }\n" +
+        " else if(Philostatus[philID].left==0){\n" +
+        " if(philID==(n-1)){\n" +
+        " if(ForkAvil[philID-1].taken==0){\n" +
+        " ForkAvil[philID-1].taken = Philostatus[philID].left = 1;\n" +
+        " printf(\"Fork %d taken by philosopher %d\\n\",philID,philID+1);\n" +
+        " }else{\n" +
+        " printf(\"Philosopher %d is waiting for fork %d\\n\",philID+1,philID);\n" +
+        " }\n" +
+        " }else{\n" +
+        " if(ForkAvil[philID].taken == 0){\n" +
+        " ForkAvil[philID].taken = Philostatus[philID].left = 1;\n" +
+        " printf(\"Fork %d taken by Philosopher %d\\n\",philID+1,philID+1);\n" +
+        " }else{\n" +
+        " printf(\"Philosopher %d is waiting for Fork %d\\n\",philID+1,philID+1);\n" +
+        " }\n" +
+        " }\n" +
+        " }else{}\n" +
+        "}\n" +
+        "int main(){\n" +
+        "for(i=0;i<n;i++)\n" +
+        " ForkAvil[i].taken=Philostatus[i].left=Philostatus[i].right=0;\n" +
+        "while(compltedPhilo<n){\n" +
+        "for(i=0;i<n;i++)\n" +
+        " goForDinner(i);\n" +
+        "printf(\"\\nTill now num of philosophers completed dinner are %d\\n\\n\",compltedPhilo);\n" +
+        "}\n" +
+        "return 0;\n" +
+        "}\n";
+    navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>

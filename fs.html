@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var txt="echo -n &quot;Enter Number :&quot;\n" +
+        "read N\n" +
+        "echo -n &quot;Enter Num1 :&quot;\n" +
+        "read a\n" +
+        "echo -n &quot;Enter Num2 :&quot;\n" +
+        "read b\n" +
+        "echo &quot;The Fibonacci series is : &quot;\n" +
+        "for (( i=0; i&lt;N; i++ ))\n" +
+        "do\n" +
+        "echo -n &quot;$a &quot;\n" +
+        "fn=$((a + b))\n" +
+        "a=$b\n" +
+        "b=$fn\n" +
+        "done\n";
+    navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  var txt="#include<stdio.h>\n" +
+          "int main(){\n" +
+          "int  n;\n" +
+          "printf(\"Enter Total Number of Processes:\");\n" +
+          " scanf(\"%d\", &n);\n" +
+          "int wait_time = 0, ta_time = 0, arr_time[n], burst_time[n], temp_burst_time[n];\n" +
+          "int x = n;\n" +
+          " for(int i = 0; i < n; i++)    {\n" +
+          "printf(\"Enter Details of Process %d \\n\", i + 1);\n" +
+          "printf(\"Arrival Time:  \");\n" +
+          "scanf(\"%d\", &arr_time[i]);\n" +
+          " printf(\"Burst Time:   \");\n" +
+          "scanf(\"%d\", &burst_time[i]);\n" +
+          "temp_burst_time[i] = burst_time[i];\n" +
+          " }\n" +
+          " int time_slot;\n" +
+          " printf(\"Enter Time Slot:\");\n" +
+          " scanf(\"%d\", &time_slot);\n" +
+          " int total = 0,  counter = 0,i;\n" +
+          " printf(\"Process ID       Burst Time       Turnaround Time      Waiting Time\\n\");\n" +
+          " for(total=0, i = 0; x!=0; ){\n" +
+          " if(temp_burst_time[i] <= time_slot && temp_burst_time[i] > 0){\n" +
+          " total = total + temp_burst_time[i];\n" +
+          " temp_burst_time[i] = 0;\n" +
+          " counter=1; }\n" +
+          "  else if(temp_burst_time[i] > 0) {\n" +
+          "  temp_burst_time[i] = temp_burst_time[i] - time_slot;\n" +
+          " total  += time_slot;\n" +
+          " }\n" +
+          "if(temp_burst_time[i]==0 && counter==1)          {            x--;\n" +
+          "printf(\"\\nProcess No %d  \\t\\t %d\\t\\t %d\\t\\t\\t %d\", i+1, burst_time[i], total-arr_time[i], total-arr_time[i]-burst_time[i]);\n" +
+          "wait_time = wait_time+total-arr_time[i]-burst_time[i];\n" +
+          "ta_time += total -arr_time[i];\n" +
+          "counter =0; }\n" +
+          "if(i==n-1){\n" +
+          "i=0;\n" +
+          "}\n" +
+          "else if(arr_time[i+1]<=total) {\n" +
+          "            i++;}\n" +
+          "else{i=0;}}\n" +
+          "float average_wait_time = wait_time * 1.0 / n;\n" +
+          "float average_turnaround_time = ta_time * 1.0 / n;    printf(\"\\nAverage Waiting Time:%f\", average_wait_time);    printf(\"\\nAvg Turnaround Time:%f\", average_turnaround_time);\n" +
+          "return 0;\n" +
+          "}\n";
+  navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>

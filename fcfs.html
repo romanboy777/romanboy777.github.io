@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var txt="echo -n \"Enter process number: \"\n" +
+        "read n1\n" +
+        "BurstTime=()\n" +
+        "WaitingTime=()\n" +
+        "TurnAroundTime=()\n" +
+        "for i in $(seq 1 1 $n1)\n" +
+        "do\n" +
+        "echo -n \"Enter Burst Time for process:\"\n" +
+        "read bt\n" +
+        "BurstTime+=($bt)\n" +
+        "done\n" +
+        "WaitingTime[0]=0\n" +
+        "TurnAroundTime+=${BurstTime[0]}\n" +
+        "TotalWaitingTime=0\n" +
+        "TotalTurnAroundTime=${TurnAroundTime[0]}\n" +
+        "for i in $(seq 1 1 $((n1-1)))\n" +
+        "do\n" +
+        "WaitingTime[$i]=$((${WaitingTime[$((i-1))]} + ${BurstTime[$((i-1))]}))\n" +
+        "TurnAroundTime[$i]=$((${WaitingTime[$i]} + ${BurstTime[$i]}))\n" +
+        "TotalWaitingTime=$(($TotalWaitingTime + ${WaitingTime[$i]}))\n" +
+        "TotalTurnAroundTime=$(($TotalTurnAroundTime + ${TurnAroundTime[$i]}))\n" +
+        "done\n" +
+        "AvgWaitingTime=$(($TotalWaitingTime / $n1))\n" +
+        "AvgTurnAroundTime=$(($TotalTurnAroundTime / $n1))\n" +
+        "echo \"PROCESS\n" +
+        "BURSTTIME\n" +
+        "WAITINGTIME\n" +
+        "TURNAROUND TIME\"\n" +
+        "for(( i=0; i<$n1; i++))\n" +
+        "do\n" +
+        "echo \"p:${i}\n" +
+        "${BurstTime[$i]}\n" +
+        "${WaitingTime[$i]}\n" +
+        "$\n" +
+        "{TurnAroundTime[$i]}\"\n" +
+        "done\n" +
+        "echo Average Waiting Time : $AvgWaitingTime\n" +
+        "echo Average Turn Around Time : $AvgTurnAroundTime";
+    navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  var txt="#include<stdio.h>\n" +
+          "void main()\n" +
+          "{\n" +
+          "int allocated[15][15],max[15][15],need[15][15],avail[15],tres[15],work[15],flag[15];\n" +
+          " int pno,rno,i,j,prc,count,t,total;\n" +
+          " count=0;\n" +
+          " printf(\"\\n Enter number of process:\");\n" +
+          " scanf(\"%d\",&pno);\n" +
+          " printf(\"\\n Enter number of resources:\");\n" +
+          " scanf(\"%d\",&rno);\n" +
+          " for(i=1;i<=pno;i++)\n" +
+          " {\n" +
+          " flag[i]=0;\n" +
+          " }\n" +
+          " printf(\"\\n Enter total numbers of each resources:\");\n" +
+          " for(i=1;i<= rno;i++)\n" +
+          " scanf(\"%d\",&tres[i]);\n" +
+          " printf(\"\\n Enter Max resources for each process:\");\n" +
+          " for(i=1;i<= pno;i++)\n" +
+          " {\n" +
+          " printf(\"\\n for process %d:\",i);\n" +
+          " for(j=1;j<= rno;j++)\n" +
+          " scanf(\"%d\",&max[i][j]);\n" +
+          " }\n" +
+          " printf(\"\\n Enter allocated resources for each process:\");\n" +
+          " for(i=1;i<= pno;i++)\n" +
+          " {\n" +
+          " printf(\"\\n for process %d:\",i);\n" +
+          " for(j=1;j<= rno;j++)\n" +
+          " scanf(\"%d\",&allocated[i][j]);\n" +
+          " }\n" +
+          " printf(\"\\n available resources:\\n\");\n" +
+          " for(j=1;j<= rno;j++)\n" +
+          " {\n" +
+          " avail[j]=0;\n" +
+          " total=0;\n" +
+          " for(i=1;i<= pno;i++)\n" +
+          " {\n" +
+          " total+=allocated[i][j];\n" +
+          " }\n" +
+          " avail[j]=tres[j]-total;\n" +
+          " work[j]=avail[j];\n" +
+          " printf(\" %d \\t\",work[j]);\n" +
+          " }\n" +
+          " do\n" +
+          " {\n" +
+          " for(i=1;i<= pno;i++)\n" +
+          " {\n" +
+          " for(j=1;j<= rno;j++)\n" +
+          " {\n" +
+          " need[i][j]=max[i][j]-allocated[i][j];\n" +
+          " }\n" +
+          " }\n" +
+          " printf(\"\\n Allocated matrix Max need\");\n" +
+          " for(i=1;i<= pno;i++)\n" +
+          " {\n" +
+          " printf(\"\\n\");\n" +
+          " for(j=1;j<= rno;j++)\n" +
+          " {\n" +
+          " printf(\"%4d\",allocated[i][j]);\n" +
+          " }\n" +
+          " printf(\"|\");\n" +
+          " for(j=1;j<= rno;j++)\n" +
+          " {\n" +
+          " printf(\"%4d\",max[i][j]);\n" +
+          " }\n" +
+          " printf(\"|\");\n" +
+          " for(j=1;j<= rno;j++)\n" +
+          " {\n" +
+          " printf(\"%4d\",need[i][j]);\n" +
+          " }\n" +
+          " }\n" +
+          " prc=0;\n" +
+          " for(i=1;i<= pno;i++)\n" +
+          " {\n" +
+          " if(flag[i]==0)\n" +
+          " {\n" +
+          "prc=i;\n" +
+          "for(j=1;j<= rno;j++)\n" +
+          "{\n" +
+          "if(work[j]< need[i][j])\n" +
+          "{\n" +
+          " prc=0;\n" +
+          " break;\n" +
+          "}\n" +
+          "}\n" +
+          " }\n" +
+          " if(prc!=0)\n" +
+          " break;\n" +
+          " }\n" +
+          " if(prc!=0)\n" +
+          " {\n" +
+          " printf(\"\\n Process %d completed\",i);\n" +
+          " count++;\n" +
+          " printf(\"\\n Available matrix:\");\n" +
+          " for(j=1;j<= rno;j++)\n" +
+          " {\n" +
+          "work[j]+=allocated[prc][j];\n" +
+          "allocated[prc][j]=0;\n" +
+          "max[prc][j]=0;\n" +
+          "flag[prc]=1;\n" +
+          "printf(\" %d\",work[j]);\n" +
+          " }\n" +
+          " }\n" +
+          " }while(count!=pno&&prc!=0);\n" +
+          " if(count==pno)\n" +
+          " printf(\"\\nThe system is in a safe state!!\");\n" +
+          " else\n" +
+          " printf(\"\\nThe system is in an unsafe state!!\");\n" +
+          "}\n";
+  navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>

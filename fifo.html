@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  var txt="#include<stdio.h>\n" +
+          "int main()\n" +
+          "{\n" +
+          "int i,j,n,a[50],frame[10],no,k,avail,count=0;\n" +
+          " printf(\"\\n ENTER THE NUMBER OF PAGES:\\n\");\n" +
+          " scanf(\"%d\",&n);\n" +
+          " printf(\"\\n ENTER THE PAGE NUMBER :\\n\");\n" +
+          " for(i=1;i<=n;i++)\n" +
+          " scanf(\"%d\",&a[i]);\n" +
+          " printf(\"\\n ENTER THE NUMBER OF FRAMES :\");\n" +
+          " scanf(\"%d\",&no);\n" +
+          " for(i=0;i<no;i++)\n" +
+          " frame[i]= -1;\n" +
+          " j=0;\n" +
+          " printf(\"\\tref string\\t page frames\\n\");\n" +
+          " for(i=1;i<=n;i++)\n" +
+          " {\n" +
+          " printf(\"%d\\t\\t\",a[i]);\n" +
+          " avail=0;\n" +
+          " for(k=0;k<no;k++)\n" +
+          "if(frame[k]==a[i])\n" +
+          " avail=1;\n" +
+          " if (avail==0)\n" +
+          " {\n" +
+          " frame[j]=a[i];\n" +
+          " j=(j+1)%no;\n" +
+          " count++;\n" +
+          " for(k=0;k<no;k++)\n" +
+          " printf(\"%d\\t\",frame[k]);\n" +
+          "}\n" +
+          " printf(\"\\n\");\n" +
+          "}\n" +
+          " printf(\"Page Fault Is %d\",count);\n" +
+          " return 0;\n" +
+          "}\n";
+  navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>
