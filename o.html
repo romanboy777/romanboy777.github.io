@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var txt="#include<stdio.h>\n" +
+        "int i,j,nof,nor,flag=0,ref[50],frm[50],pf=0,victim=-1;\n" +
+        "int recent[10],optcal[50],count=0;\n" +
+        "int optvictim();\n" +
+        "void main()\n" +
+        "{\n" +
+        " printf(\"\\n OPTIMAL PAGE REPLACEMENT ALGORITHN\");\n" +
+        " printf(\"\\n.................................\");\n" +
+        " printf(\"\\nEnter the no.of frames\");\n" +
+        " scanf(\"%d\",&nof);\n" +
+        " printf(\"Enter the no.of reference string\");\n" +
+        " scanf(\"%d\",&nor);\n" +
+        " printf(\"Enter the reference string\");\n" +
+        " for(i=0;i<nor;i++)\n" +
+        " scanf(\"%d\",&ref[i]);\n" +
+        " printf(\"\\n OPTIMAL PAGE REPLACEMENT ALGORITHM\");\n" +
+        " printf(\"\\n................................\");\n" +
+        " printf(\"\\nThe given string\");\n" +
+        " printf(\"\\n....................\\n\");\n" +
+        " for(i=0;i<nor;i++)\n" +
+        " printf(\"%4d\",ref[i]);\n" +
+        " for(i=0;i<nof;i++)\n" +
+        " {\n" +
+        " frm[i]=-1;\n" +
+        " optcal[i]=0;\n" +
+        " }\n" +
+        " for(i=0;i<10;i++)\n" +
+        " recent[i]=0;\n" +
+        " printf(\"\\n\");\n" +
+        " for(i=0;i<nor;i++)\n" +
+        " {\n" +
+        " flag=0;\n" +
+        " printf(\"\\n\\tref no %d ->\\t\",ref[i]);\n" +
+        " for(j=0;j<nof;j++)\n" +
+        " {\n" +
+        "if(frm[j]==ref[i])\n" +
+        "{\n" +
+        " flag=1;\n" +
+        " break;\n" +
+        "}\n" +
+        " }\n" +
+        " if(flag==0)\n" +
+        " {\n" +
+        "count++;\n" +
+        "if(count<=nof)\n" +
+        " victim++;\n" +
+        "              else\n" +
+        " victim=optvictim(i);\n" +
+        "pf++;\n" +
+        "frm[victim]=ref[i];\n" +
+        "for(j=0;j<nof;j++)\n" +
+        " printf(\"%4d\",frm[j]);\n" +
+        " }\n" +
+        " }\n" +
+        " printf(\"\\n Number of page faults: %d\",pf);\n" +
+        "}\n" +
+        "int optvictim(int index)\n" +
+        "{\n" +
+        " int i,j,temp,notfound;\n" +
+        " for(i=0;i<nof;i++)\n" +
+        " {\n" +
+        " notfound=1;\n" +
+        " for(j=index;j<nor;j++)\n" +
+        "if(frm[i]==ref[j])\n" +
+        "{\n" +
+        " notfound=0;\n" +
+        " optcal[i]=j;\n" +
+        " break;\n" +
+        "}\n" +
+        " if(notfound==1)\n" +
+        " return i;\n" +
+        " }\n" +
+        " temp=optcal[0];\n" +
+        " for(i=1;i<nof;i++)\n" +
+        " if(temp<optcal[i])\n" +
+        " temp=optcal[i];\n" +
+        " for(i=0;i<nof;i++)\n" +
+        " if(frm[temp]==frm[i])\n" +
+        " return i;\n" +
+        " return 0;\n" +
+        "}\n";
+    navigator.clipboard.writeText(txt);
+</script>
+</body>
+</html>
